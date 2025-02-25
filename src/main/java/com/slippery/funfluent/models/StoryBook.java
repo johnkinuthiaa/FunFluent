@@ -21,7 +21,8 @@ public class StoryBook {
     private String title;
     @Lob
     private String synopsis;
+    private String genre;
     private String language;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Chapters> chapters =new ArrayList<>();
 }
