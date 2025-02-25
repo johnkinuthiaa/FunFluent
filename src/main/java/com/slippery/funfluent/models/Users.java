@@ -1,14 +1,10 @@
 package com.slippery.funfluent.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -24,12 +20,12 @@ public class Users {
     private String password;
     private String email;
     private String language;
-    private Long level =0L;
-    private Long coins =0L;
+    private Long level ;
+    private Long coins ;
     private String role;
     @OneToMany
-    private List<StoryBook> savedBooks =new ArrayList<>();
+    private List<StoryBook> savedBooks;
     @OneToMany
-    private List<StoryBook> readingList =new ArrayList<>();
+    private List<StoryBook> readingList;
 
 }
