@@ -41,6 +41,7 @@ public class UserServiceImplementation implements UsersService {
         userDetails.setLevel(0L);
         userDetails.setReadingList(new ArrayList<>());
         userDetails.setSavedBooks(new ArrayList<>());
+        repository.save(userDetails);
         response.setMessage("User created successfully!");
         response.setStatusCode(201);
         response.setUser(userDetails);

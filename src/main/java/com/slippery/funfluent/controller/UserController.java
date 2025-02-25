@@ -20,22 +20,22 @@ public class UserController {
     }
     @PostMapping("/login")
     public ResponseEntity<UserDto> login(@RequestBody Users userDetails) {
-        return null;
+        return ResponseEntity.ok(service.login(userDetails));
     }
     @GetMapping("/{id}/get")
     public ResponseEntity<UserDto> findUserById(@PathVariable Long id) {
-        return null;
+        return  ResponseEntity.ok(service.findUserById(id));
     }
     @DeleteMapping("/{id}/delete")
     public ResponseEntity<UserDto> deleteUserById(@PathVariable Long id) {
-        return null;
+        return  ResponseEntity.ok(service.deleteUserById(id));
     }
     @DeleteMapping("/delete/all")
     public ResponseEntity<UserDto> deleteAll() {
-        return null;
+        return  ResponseEntity.ok(service.deleteAll());
     }
     @GetMapping("/get/all")
     public ResponseEntity<UserDto> findAll() {
-        return null;
+        return  ResponseEntity.ok(service.findAll());
     }
 }

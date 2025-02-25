@@ -17,6 +17,8 @@ public class Chapters {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String chapterTitle;
+    @Lob
+    private String content;
     @ManyToOne
     @JsonIgnore
     private StoryBook storyBook;

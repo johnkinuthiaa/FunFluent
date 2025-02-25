@@ -26,9 +26,11 @@ public class StorybookServiceImplementation implements BookService {
     public StoryBookDto createNewStoryBook(StoryBook storyBook) {
         StoryBookDto response =new StoryBookDto();
         storyBook.setChapters(new ArrayList<>());;
+        repository.save(storyBook);
         response.setMessage("New storybook added");
         response.setStatusCode(200);
         response.setStoryBook(storyBook);
+
         return response;
     }
 
@@ -119,7 +121,6 @@ public class StorybookServiceImplementation implements BookService {
         chapters.add(chapter);
         book.setChapters(chapters);
         repository.save(book);
-        chaptersRepository.save(chapter);
         response.setMessage("New chapter added to storybook");
         response.setStoryBook(book);
         response.setStatusCode(200);
