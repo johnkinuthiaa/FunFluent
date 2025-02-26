@@ -21,6 +21,8 @@ public class StoryBook {
     private String title;
     @Lob
     private String synopsis;
+    @Lob
+    private byte[] imageCover;
     private String genre;
     private String language;
     @OneToMany(cascade = CascadeType.ALL)

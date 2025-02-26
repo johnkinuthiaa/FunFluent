@@ -6,8 +6,11 @@ import com.slippery.funfluent.models.StoryBook;
 import com.slippery.funfluent.repository.ChaptersRepository;
 import com.slippery.funfluent.repository.StoryBookRepository;
 import com.slippery.funfluent.service.BookService;
+import org.apache.tomcat.util.http.fileupload.impl.IOFileUploadException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -23,9 +26,15 @@ public class StorybookServiceImplementation implements BookService {
     }
 
     @Override
-    public StoryBookDto createNewStoryBook(StoryBook storyBook) {
+    public StoryBookDto createNewStoryBook(StoryBook storyBook, MultipartFile imageCover) throws IOException {
         StoryBookDto response =new StoryBookDto();
-        storyBook.setChapters(new ArrayList<>());;
+        storyBook.setChapters(new ArrayList<>());
+        try{
+            storyBook.setImageCover(imageCover.getBytes());
+        }catch (Exception e){
+            throw new IOException();
+        }
+
         repository.save(storyBook);
         response.setMessage("New storybook added");
         response.setStatusCode(200);
