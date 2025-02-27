@@ -16,6 +16,7 @@ public interface BookService {
     StoryBookDto findStoryBooksByGenre(String genre);
     StoryBookDto findStoryBooksByLanguage(String language);
     StoryBookDto findStoryBooksByName(String title);
+    StoryBookDto getAllBooks();
     StoryBookDto addChapter(Chapters chapter,Long bookId);
 
 }

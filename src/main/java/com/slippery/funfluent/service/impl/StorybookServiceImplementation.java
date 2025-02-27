@@ -118,6 +118,21 @@ public class StorybookServiceImplementation implements BookService {
     }
 
     @Override
+    public StoryBookDto getAllBooks() {
+        StoryBookDto response =new StoryBookDto();
+        var allBooks =repository.findAll();
+        if(allBooks.isEmpty()){
+            response.setMessage("no storybook in database");
+            response.setStatusCode(404);
+            return response;
+        }
+        response.setStoryBookList(allBooks);
+        response.setStatusCode(200);
+        response.setMessage("All books");
+        return response;
+    }
+
+    @Override
     public StoryBookDto addChapter(Chapters chapter,Long bookId) {
         StoryBookDto response =new StoryBookDto();
         var existingStoryBook =findStoryBookById(bookId);

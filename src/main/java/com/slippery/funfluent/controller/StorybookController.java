@@ -13,6 +13,7 @@ import java.io.IOException;
 
 @RestController
 @RequestMapping("/api/v1/storybook")
+@CrossOrigin
 public class StorybookController{
     private final BookService service;
 
@@ -46,5 +47,9 @@ public class StorybookController{
     @PutMapping("/{bookId}/add-chapter")
     public ResponseEntity<StoryBookDto> addChapter(@RequestBody Chapters chapter,@PathVariable Long bookId) {
         return ResponseEntity.ok(service.addChapter(chapter, bookId));
+    }
+    @GetMapping("/get/all")
+    public ResponseEntity<StoryBookDto> getAllBooks(){
+        return ResponseEntity.ok(service.getAllBooks());
     }
 }
