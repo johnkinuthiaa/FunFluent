@@ -27,4 +27,6 @@ public class StoryBook {
     private String language;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Chapters> chapters =new ArrayList<>();
+    @OneToOne(cascade = CascadeType.ALL)
+    private NewWords newWords;
 }
