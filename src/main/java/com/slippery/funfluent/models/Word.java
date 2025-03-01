@@ -1,5 +1,6 @@
 package com.slippery.funfluent.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,6 +20,7 @@ public class Word {
     @Lob
     private String description;
     @ManyToOne
-    private NewWords newWords;
+    @JsonBackReference
+    private Dictionary dictionary;
 
 }

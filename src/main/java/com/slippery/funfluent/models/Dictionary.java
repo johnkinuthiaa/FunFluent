@@ -1,5 +1,6 @@
 package com.slippery.funfluent.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,12 +14,14 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class NewWords {
+public class Dictionary {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne
+    @JsonManagedReference
     private StoryBook storyBook;
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Word> newWords;
+    @JsonManagedReference
+    private List<Word> words;
 }
