@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.List;
 
 public interface BookService {
-    StoryBookDto createNewStoryBook(StoryBook storyBook, MultipartFile imageCover) throws IOException;
+    StoryBookDto createNewStoryBook(StoryBook storyBook);
     StoryBookDto updateStoryBook(StoryBook storyBookDetails,Long id);
     StoryBookDto findStoryBookById(Long id);
     StoryBookDto findStoryBooksByGenre(String genre);

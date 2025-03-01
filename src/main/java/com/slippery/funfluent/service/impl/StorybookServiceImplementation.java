@@ -2,8 +2,10 @@ package com.slippery.funfluent.service.impl;
 
 import com.slippery.funfluent.dto.StoryBookDto;
 import com.slippery.funfluent.models.Chapters;
+import com.slippery.funfluent.models.Dictionary;
 import com.slippery.funfluent.models.StoryBook;
 import com.slippery.funfluent.repository.ChaptersRepository;
+import com.slippery.funfluent.repository.DictionaryRepository;
 import com.slippery.funfluent.repository.StoryBookRepository;
 import com.slippery.funfluent.service.BookService;
 import org.apache.tomcat.util.http.fileupload.impl.IOFileUploadException;
@@ -19,23 +21,26 @@ import java.util.stream.Collectors;
 public class StorybookServiceImplementation implements BookService {
     private final StoryBookRepository repository;
     private final ChaptersRepository chaptersRepository;
+    private final DictionaryRepository dictionaryRepository;
 
-    public StorybookServiceImplementation(StoryBookRepository repository, ChaptersRepository chaptersRepository) {
+    public StorybookServiceImplementation(StoryBookRepository repository, ChaptersRepository chaptersRepository, DictionaryRepository dictionaryRepository) {
         this.repository = repository;
         this.chaptersRepository = chaptersRepository;
+        this.dictionaryRepository = dictionaryRepository;
     }
 
     @Override
-    public StoryBookDto createNewStoryBook(StoryBook storyBook, MultipartFile imageCover) throws IOException {
+    public StoryBookDto createNewStoryBook(StoryBook storyBook) {
         StoryBookDto response =new StoryBookDto();
         storyBook.setChapters(new ArrayList<>());
-        try{
-            storyBook.setImageCover(imageCover.getBytes());
-        }catch (Exception e){
-            throw new IOException();
-        }
+
+        Dictionary dictionary =new Dictionary();
+        dictionary.setWords(new ArrayList<>());
+        dictionary.setStoryBook(storyBook);
+        storyBook.setDictionary(dictionary);
 
         repository.save(storyBook);
+        dictionaryRepository.save(dictionary);
         response.setMessage("New storybook added");
         response.setStatusCode(200);
         response.setStoryBook(storyBook);

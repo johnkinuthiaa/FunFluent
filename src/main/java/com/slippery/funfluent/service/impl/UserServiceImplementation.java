@@ -37,6 +37,7 @@ public class UserServiceImplementation implements UsersService {
             return response;
         }
         userDetails.setCoins(0L);
+        userDetails.setRole("USER");
         userDetails.setPassword(passwordEncoder.encode(userDetails.getPassword()));
         userDetails.setLevel(0L);
         userDetails.setReadingList(new ArrayList<>());
@@ -51,14 +52,15 @@ public class UserServiceImplementation implements UsersService {
     @Override
     public UserDto login(Users userDetails) {
         UserDto response =new UserDto();
-        Users existingUser =repository.findByUsername(userDetails.getUsername());
+        Users existingUser =repository.findByEmail(userDetails.getEmail());
         if(existingUser ==null){
-            response.setMessage("User with username "+userDetails.getUsername()+" does exists");
+            response.setMessage("User with username "+userDetails.getEmail()+" does exists");
             response.setStatusCode(404);
             return response;
         }
+
         Authentication authentication =authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                userDetails.getUsername(),userDetails.getPassword()
+                existingUser.getUsername(),userDetails.getPassword()
         ));
         if (!authentication.isAuthenticated()) {
             response.setMessage("user not authenticated due to wrong credentials");

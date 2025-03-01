@@ -19,9 +19,7 @@ public class Dictionary {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne
-    @JsonManagedReference
     private StoryBook storyBook;
     @OneToMany(cascade = CascadeType.ALL)
-    @JsonManagedReference
     private List<Word> words;
 }

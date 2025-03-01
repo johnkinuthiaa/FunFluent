@@ -21,8 +21,8 @@ public class StorybookController{
         this.service = service;
     }
     @PostMapping("/create")
-    public ResponseEntity<StoryBookDto> createNewStoryBook(@RequestPart StoryBook storyBook, @RequestPart MultipartFile imageCover) throws IOException {
-        return ResponseEntity.ok(service.createNewStoryBook(storyBook,imageCover));
+    public ResponseEntity<StoryBookDto> createNewStoryBook(@RequestBody StoryBook storyBook) {
+        return ResponseEntity.ok(service.createNewStoryBook(storyBook));
     }
     @PutMapping("/{id}/update")
     public ResponseEntity<StoryBookDto> updateStoryBook(@RequestBody StoryBook storyBookDetails,@PathVariable Long id) {
