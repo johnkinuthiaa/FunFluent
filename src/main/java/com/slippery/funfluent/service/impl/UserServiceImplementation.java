@@ -128,4 +128,19 @@ public class UserServiceImplementation implements UsersService {
         response.setMessage("User list");
         return response;
     }
+
+    @Override
+    public UserDto findAllBooksSavedByUser(Long userId) {
+        UserDto response =new UserDto();
+        var existingUser =findUserById(userId);
+        if(existingUser.getStatusCode() !=200){
+            return existingUser;
+        }
+        var books =existingUser.getUser().getSavedBooks();
+        response.setSavedBooks(books);
+        response.setStatusCode(200);
+        response.setMessage("All books saved by user");
+
+        return response;
+    }
 }

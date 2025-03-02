@@ -39,4 +39,8 @@ public class UserController {
     public ResponseEntity<UserDto> findAll() {
         return  ResponseEntity.ok(service.findAll());
     }
+    @GetMapping("/{userId}/saved-books")
+    public ResponseEntity<UserDto> findAllBooksSavedByUser(@PathVariable Long userId){
+        return ResponseEntity.ok(service.findAllBooksSavedByUser(userId))
+    }
 }

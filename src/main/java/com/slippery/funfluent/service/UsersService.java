@@ -10,4 +10,5 @@ public interface UsersService {
     UserDto deleteUserById(Long id);
     UserDto deleteAll();
     UserDto findAll();
+    UserDto findAllBooksSavedByUser(Long userId);
 }
