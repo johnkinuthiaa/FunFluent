@@ -32,4 +32,5 @@ public class StoryBook {
     @OneToOne(cascade = CascadeType.ALL)
     @JsonIgnore
     private Dictionary dictionary;
+    private String author;
 }

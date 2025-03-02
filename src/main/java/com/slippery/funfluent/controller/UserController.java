@@ -6,6 +6,8 @@ import com.slippery.funfluent.service.UsersService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/users")
 @CrossOrigin
@@ -41,6 +43,10 @@ public class UserController {
     }
     @GetMapping("/{userId}/saved-books")
     public ResponseEntity<UserDto> findAllBooksSavedByUser(@PathVariable Long userId){
-        return ResponseEntity.ok(service.findAllBooksSavedByUser(userId))
+        return ResponseEntity.ok(service.findAllBooksSavedByUser(userId));
+    }
+    @PutMapping("/{userId}/update/country")
+    public ResponseEntity<UserDto> setCountryDetails(@RequestBody Users userDetails,@PathVariable Long userId){
+        return ResponseEntity.ok(service.setCountryDetails(userDetails, userId));
     }
 }

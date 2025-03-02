@@ -19,7 +19,8 @@ public class Users {
     private String username;
     private String password;
     private String email;
-    private String language;
+    @Lob
+    private List<String> countryDetails;
     private Long level ;
     private Long coins ;
     private String role;

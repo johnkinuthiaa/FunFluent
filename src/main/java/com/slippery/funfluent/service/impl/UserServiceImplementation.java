@@ -14,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -38,6 +39,7 @@ public class UserServiceImplementation implements UsersService {
         }
         userDetails.setCoins(0L);
         userDetails.setRole("USER");
+        userDetails.setCountryDetails(new ArrayList<>());
         userDetails.setPassword(passwordEncoder.encode(userDetails.getPassword()));
         userDetails.setLevel(0L);
         userDetails.setReadingList(new ArrayList<>());
@@ -141,6 +143,27 @@ public class UserServiceImplementation implements UsersService {
         response.setStatusCode(200);
         response.setMessage("All books saved by user");
 
+        return response;
+    }
+
+    @Override
+    public UserDto saveBook(Long userId, Long bookId) {
+        return null;
+    }
+
+    @Override
+    public UserDto setCountryDetails(Users userDetails, Long userId) {
+        var existingUser =findUserById(userId);
+        UserDto response =new UserDto();
+        if(existingUser.getStatusCode() !=200){
+            return response;
+        }
+        var user =existingUser.getUser();
+        user.setCountryDetails(userDetails.getCountryDetails());
+        repository.save(user);
+        response.setUser(user);
+        response.setMessage("Country info updated");
+        response.setStatusCode(200);
         return response;
     }
 }
