@@ -3,13 +3,11 @@ package com.slippery.funfluent.controller;
 import com.slippery.funfluent.dto.DictionaryDto;
 import com.slippery.funfluent.service.DictionaryService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/dictionary")
+@CrossOrigin
 public class DictionaryController {
     private final DictionaryService service;
 
